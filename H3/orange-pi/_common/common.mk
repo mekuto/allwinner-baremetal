@@ -44,7 +44,7 @@ clean:
 
 $(ELF_FILE): $(LDSCRIPT) $(OBJECTS) $(LIBS_FILES)
 	@echo LD $<
-	$(LD) $(OBJECTS) $(LIBS) -T $(LDSCRIPT) -o $@
+	@$(LD) $(OBJECTS) $(LIBS) -T $(LDSCRIPT) -o $@
 
 $(CMD_FILE):
 	@echo $@
