@@ -16,3 +16,5 @@ install:
 .PHONY: clean
 clean:
 	$(foreach dir,$(SUBDIRS),$(MAKE) -C $(dir) $@ && ) true
+	@echo cleaning lib-h3 library
+	@$(MAKE) -C _common/rpidmx512/lib-h3 -f Makefile.H3 clean >/dev/null

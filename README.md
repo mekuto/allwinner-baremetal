@@ -5,8 +5,8 @@ programming on Allwinner H3/H2+ boards.
 The code is tested on [OrangePi Zero][opizero] but should also work on NanoPi
 Neo without any modification.
 
-The original code was written by [dwelch67][dwelch67]. I ([mprymek][mprymek])
-have essentialy just edited the makefiles and written README.
+Some of the code was originally written by [dwelch67][dwelch67]. Some of the
+code uses an astounding [H3 HAL library][lib-h3] from [Orange Pi DMX project][opidmx].
 
 ## Requisites
 
@@ -121,4 +121,5 @@ option of your DHCP configuration.
 [u-boot]: https://www.denx.de/wiki/U-Boot
 [orangepi-netboot]: http://blog.ator.cz/posts/orangepi-zero-netboot/
 [dwelch67]: https://github.com/dwelch67
-[mprymek]: https://github.com/mprymek
+[lib-h3]: https://github.com/vanvught/rpidmx512/tree/master/lib-h3
+[opidmx]: http://www.orangepi-dmx.org/
