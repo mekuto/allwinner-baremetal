@@ -1,0 +1,7 @@
+*.bin
+*.cmd
+*.elf
+*.list
+*.scr
+*.srec
+*.o
