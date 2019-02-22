@@ -6,7 +6,7 @@ The code is tested on [OrangePi Zero][opizero] but should also work on NanoPi
 Neo without any modification.
 
 The original code was written by [dwelch67][dwelch67]. I ([mprymek][mprymek])
-have essentialy just edited the makefiles and wrote README.
+have essentialy just edited the makefiles and written README.
 
 ## Requisites
 
