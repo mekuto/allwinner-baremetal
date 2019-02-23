@@ -1,9 +1,17 @@
-.DEFAULT_GOAL := all
+include config.mk
 
 SUBDIRS = \
+  blinker03 \
+  uart01 \
+  uart02
+
+ifeq ($(BOARD_VARIANT),NANO_PI)
+SUBDIRS += \
   blinker01 \
-  blinker02 \
-  uart01
+  blinker02
+endif
+
+.DEFAULT_GOAL := all
 
 .PHONY: all
 all:

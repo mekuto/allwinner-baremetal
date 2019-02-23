@@ -2,13 +2,30 @@ include ../config.mk
 
 BOARD = allwinner-h3
 
-TAG = $(BOARD)-$(PROJECT)
-BIN_FILE = $(TAG).bin
-LIST_FILE = $(TAG).list
-SREC_FILE = $(TAG).srec
-ELF_FILE = $(TAG).elf
-CMD_FILE = $(TAG).cmd
-SCR_FILE = $(TAG).scr
+ifndef BOARD_VARIANT
+$(error Please define BOARD_VARIANT in config.mk)
+endif
+
+ifdef USE_VARIANT_TAG
+ifeq ($(BOARD_VARIANT),NANO_PI)
+BOARD_VARIANT_TAG = -npi
+else ifeq ($(BOARD_VARIANT),ORANGE_PI)
+BOARD_VARIANT_TAG = -opi
+else
+$(error Invalid BOARD_VARIANT: "$(BOARD_VARIANT)")
+endif
+endif
+
+LONG_NAME += $(BOARD)$(BOARD_VARIANT_TAG)-$(PROJECT)
+
+CFLAGS += -D$(BOARD_VARIANT)
+
+BIN_FILE = $(LONG_NAME).bin
+LIST_FILE = $(LONG_NAME).list
+SREC_FILE = $(LONG_NAME).srec
+ELF_FILE = $(LONG_NAME).elf
+CMD_FILE = $(LONG_NAME).cmd
+SCR_FILE = $(LONG_NAME).scr
 
 CC = $(TOOLCHAIN)/bin/$(TOOLCHAIN_PREFIX)gcc
 AS = $(TOOLCHAIN)/bin/$(TOOLCHAIN_PREFIX)as
@@ -48,7 +65,7 @@ $(ELF_FILE): $(LDSCRIPT) $(OBJECTS) $(LIBS_FILES)
 
 $(CMD_FILE):
 	@echo $@
-	@/bin/echo -e "setenv image $(PXE_DIR)/$(TAG).bin\ntftpboot 0x42000000 $(PXE_SERVER):\$${image};go 0x42000000" >$(CMD_FILE)
+	@/bin/echo -e "setenv image $(PXE_DIR)/$(LONG_NAME).bin\ntftpboot 0x42000000 $(PXE_SERVER):\$${image};go 0x42000000" >$(CMD_FILE)
 
 .PHONY: all
 all: $(ELF_FILE) $(BIN_FILE) $(LIST_FILE) $(SREC_FILE)
@@ -56,7 +73,7 @@ all: $(ELF_FILE) $(BIN_FILE) $(LIST_FILE) $(SREC_FILE)
 .PHONY: install
 install: $(BIN_FILE) $(SCR_FILE)
 	scp $(SCR_FILE) $(PXE_DEST)/$(PXE_DIR)/
-	scp $(BIN_FILE) $(PXE_DEST)/$(PXE_DIR)/$(TAG).bin
+	scp $(BIN_FILE) $(PXE_DEST)/$(PXE_DIR)/$(LONG_NAME).bin
 
 %.o: %.c
 	@echo CC $<

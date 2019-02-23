@@ -2,8 +2,7 @@
 
 This repo contains simple, **experimental** code illustrating how to do a bare metal
 programming on Allwinner H3/H2+ boards.
-The code is tested on [OrangePi Zero][opizero] but should also work on NanoPi
-Neo without any modification.
+The code is tested on [Orange Pi Zero][orangepi] and [NanoPi Neo][nanopi].
 
 Some of the code was originally written by [dwelch67][dwelch67]. Some of the
 code uses an astounding [H3 HAL library][lib-h3] from [Orange Pi DMX project][opidmx].
@@ -117,7 +116,8 @@ You can also configure the TFTP server IP using your DHCP server. In this case,
 omit the `setenv serverip` line and put the TFTP server IP into the `next-server`
 option of your DHCP configuration.
 
-[opizero]: http://linux-sunxi.org/Xunlong_Orange_Pi_Zero
+[orangepi]: http://linux-sunxi.org/Xunlong_Orange_Pi_Zero
+[nanopi]: https://linux-sunxi.org/FriendlyARM_NanoPi_NEO
 [u-boot]: https://www.denx.de/wiki/U-Boot
 [orangepi-netboot]: http://blog.ator.cz/posts/orangepi-zero-netboot/
 [dwelch67]: https://github.com/dwelch67

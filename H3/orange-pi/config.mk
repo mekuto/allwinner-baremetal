@@ -11,5 +11,6 @@ PXE_DEST = root@$(PXE_SERVER):/var/tftpboot
 # the same directory relative (as a TFTP client would see it)
 PXE_DIR = pxe/arm
 
-# for lib-h3
-CFLAGS = -DORANGE_PI
+# board type (choose one)
+#BOARD_VARIANT = ORANGE_PI
+BOARD_VARIANT = NANO_PI

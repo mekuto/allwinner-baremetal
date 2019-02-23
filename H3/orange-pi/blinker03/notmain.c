@@ -2,7 +2,16 @@
 #include "h3_board.h"
 #include "h3_timer.h"
 
+extern void h3_timer_init(void);
+
+#if defined(NANO_PI)
 #define LED1 H3_PORT_TO_GPIO(H3_GPIO_PORTA, 10)
+#elif defined(ORANGE_PI)
+#define LED1 H3_PORT_TO_GPIO(H3_GPIO_PORTA, 17)
+#else
+#error NANO_PI nor ORANGE_PI defined
+#endif
+
 #define POWER_LED_PIO	10	// PL10
 
 #define PRCM_APB0_GATE_PIO (0x1 << 0)
